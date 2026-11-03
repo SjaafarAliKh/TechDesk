@@ -15,6 +15,7 @@ const passUserToView = require("./middleware/pass-user-to-view.js");
 // routes Imports
 const authController = require("./routes/auth.routes.js");
 const indexController = require("./routes/index.routes.js");
+const ticketsRouter = require("./routes/tickets.routes.js")
 
 
 // Middleware
@@ -48,7 +49,7 @@ app.use(passUserToView)
 // Routes go here
 app.use('/auth',authController)
 app.use('/',indexController)
-
+app.use("/tickets", ticketsRouter)
 
 
 
