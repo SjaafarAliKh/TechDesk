@@ -36,7 +36,6 @@ router.get("/sign-in", (req, res) => {
 });
 
 
-
 router.post("/sign-in", async (req, res) => {
   // First, get the user from the database
   const userInDatabase = await User.findOne({ username: req.body.username });
@@ -69,9 +68,6 @@ router.get("/sign-out", (req, res) => {
   req.session.destroy();
   res.redirect("/");
 });
-
-
-
 
 
 module.exports = router;

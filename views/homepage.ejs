@@ -7,8 +7,12 @@
 </head>
 <body>
     <%- include('./partials/navbar') %>
+    <h1>TechDesk</h1>
+    <p>Report technical issues and track your support tickets.</p>
 
-    <h1>Welcome to my Website</h1>
+    <% if (user) { %>
+        <p>Welcome, <%= useer.username %>!</p>
+    <% } %>    
     
 </body>
 </html>
