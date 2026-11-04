@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= ticket.title %></title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <h1><%= ticket.title %></h1>
+
+    <p><strong>Status:</strong> <%= ticket.status %></p>
+    <p><strong>Category:</strong> <%= ticket.category %></p>
+    <p><strong>Priority:</strong> <%= ticket.priority %></p>
+    <p><strong>Created:</strong> <%= ticket.createdAt.toLocaleString() %></p>
+
+    <h2>Description</h2>
+    <p><%= ticket.description %></p>
+
+    <a href="/tickets">Back to my tickets</a>
+  </body>
+</html>
