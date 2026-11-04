@@ -53,6 +53,13 @@ app.use("/tickets", ticketsRouter)
 
 
 
+// Date helper: the server only outputs the raw date, the browser formats it
+app.locals.dateTag = (date, withTime = false) => {
+  const d = new Date(date)
+  return `<time class="js-date" data-format="${withTime ? "datetime" : "date"}" datetime="${d.toISOString()}">${d.toISOString().slice(0, 10)}</time>`
+}
+
+
 // connect to database and listen on Port 3000
 async function startServer() {
     const PORT = process.env.PORT || 3000;
