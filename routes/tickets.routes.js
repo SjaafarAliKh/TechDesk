@@ -100,7 +100,22 @@ router.delete("/:id", async (req, res) => {
 })
 
 // COMMENT: add a comment to a ticket
+router.post("/:id/comments", async (req, res) => {
+  try {
+    const ticket = await Ticket.findOne({ _id: req.params.id, owner: req.session.user._id })
+    if (!ticket) return res.redirect("/tickets")
 
+    await Comment.create({
+      content: req.body.content,
+      ticket: ticket._id,
+      author: req.session.user._id
+    })
+    res.redirect(`/tickets/${ticket._id}`)
+  } catch (error) {
+    console.log(error)
+    res.redirect(`/tickets/${req.params.id}`)
+  }
+})
 
 
 module.exports = router
