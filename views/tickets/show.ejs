@@ -12,7 +12,7 @@
     <p><strong>Status:</strong> <%= ticket.status %></p>
     <p><strong>Category:</strong> <%= ticket.category %></p>
     <p><strong>Priority:</strong> <%= ticket.priority %></p>
-    <p><strong>Created:</strong> <%= new Date(ticket.createdAt).getFullYear()%>-<%=new Date(ticket.createdAt).getMonth()  %>-<%=new Date(ticket.createdAt).getDay()%></p>
+    <p><strong>Created:</strong> <%- dateTag(ticket.createdAt) %></p>
 
     <section class="ticket-description">
     <h2>Description</h2>
