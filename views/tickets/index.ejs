@@ -30,7 +30,7 @@
               <td><%= ticket.category %></td>
               <td><%= ticket.priority %></td>
               <td><%= ticket.status %></td>
-              <td><%= ticket.createdAt.toLocaleDateString() %></td>
+              <td><%- dateTag(ticket.createdAt) %></td>
               <td><a href="/tickets/<%= ticket._id %>">View</a></td>
             </tr>
           <% }) %>
