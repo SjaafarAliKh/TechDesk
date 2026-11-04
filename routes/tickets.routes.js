@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const Ticket = require("../models/Ticket.js")
+const Comment = require("../models/Comment.js")
 const isSignedIn = require("../middleware/is-signed-in.js")
 
 // Every route in this file requires the user to be signed in
@@ -42,7 +43,12 @@ router.get("/:id", async (req, res) => {
   try {
     const ticket = await Ticket.findOne({ _id: req.params.id, owner: req.session.user._id })
     if (!ticket) return res.redirect("/tickets")
-    res.render("tickets/show.ejs", { ticket })
+    
+    const comments = await Comment.find({ ticket: ticket._id })
+      .populate("author")
+      .sort({ createdAt: 1 })
+        
+    res.render("tickets/show.ejs", { ticket, comments })
   } catch (error) {
     console.log(error)
     res.redirect("/tickets")
@@ -116,6 +122,8 @@ router.post("/:id/comments", async (req, res) => {
     res.redirect(`/tickets/${req.params.id}`)
   }
 })
+
+
 
 
 module.exports = router
