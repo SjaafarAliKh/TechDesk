@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Ticket</title>
+</head>
+
+<body>
+    <%- include('../partials/navbar') %>
+        <h1>Edit Ticket</h1>
+        <% const categories=["Network", "Hardware" , "Software" , "Account" ] %>
+        <% const priorities=["Low", "Medium" , "High" , "Urgent" ] %>
+        <% const statuses=["Open", "In Progress" , "Resolved" , "Closed" ] %>
+
+        <form action="/tickets/<%= ticket._id %>?_method=PUT" method="POST">
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" maxlength="100" value="<%= ticket.title %>" required>
+
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" maxlength="1000"><%= ticket.description %></textarea>
+
+                <label for="category">Category:</label>
+                <select name="category" id="category">
+                    <% categories.forEach { %>
+                        <option value="<%= c %>" <%=ticket.category===c ? "selected" : "" %>><%= c %></option>                           
+                           <% } %>
+                </select>
+
+                <select name="priority" id="priority">
+                    <% priorities.forEach { %>
+                        <option value="<%= p %>" <%=ticket.priority===p ? "selected" : "" %>><%= p %></option>
+                            <% } %>
+                </select>
+
+                <select name="status" id="status">
+                    <% statuses.forEach { %>
+                        <option value="<%= s %>" <%=ticket.status===s ? "selected" : "" %>><%= s %></option>
+                            <% } %>
+                </select>
+
+                    <button type="submit">Save Changes</button>
+            </form>
+                    <a href="/tickets/<%= ticket._id %>">Cancel</a>
+</body>
+</html>
