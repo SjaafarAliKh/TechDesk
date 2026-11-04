@@ -111,3 +111,83 @@ Example of the Markdown to use once the images exist:
 8. As a user, I want to update and track ticket status to monitor issue resolution.
 
 ---
+
+## Database Design
+
+### Entity Relationship Diagram (ERD)
+
+![TechDesk ERD](docs/erd.png)
+
+The same diagram in text form:
+
+```mermaid
+erDiagram
+    USER ||--o{ TICKET : creates
+    TICKET ||--o{ COMMENT : has
+    USER ||--o{ COMMENT : writes
+
+    USER {
+        ObjectId _id PK
+        String username
+        String password
+    }
+    TICKET {
+        ObjectId _id PK
+        String title
+        String description
+        String category
+        String priority
+        String status
+        ObjectId owner FK
+        Date createdAt
+        Date updatedAt
+    }
+    COMMENT {
+        ObjectId _id PK
+        String content
+        ObjectId ticket FK
+        ObjectId author FK
+        Date createdAt
+    }
+```
+
+### Models
+
+**User**
+
+| Field | Type | Notes |
+|-------|------|-------|
+| username | String | Required, unique |
+| password | String | Required, stored hashed with bcrypt |
+
+**Ticket** (full CRUD)
+
+| Field | Type | Notes |
+|-------|------|-------|
+| title | String | Required |
+| description | String | Required |
+| category | String | Network, Hardware, Software, or Account |
+| priority | String | Low, Medium, High, or Urgent |
+| status | String | Open, In Progress, Resolved, or Closed (default: Open) |
+| owner | ObjectId | Reference to User |
+| createdAt, updatedAt | Date | Added automatically by Mongoose timestamps |
+
+**Comment**
+
+| Field | Type | Notes |
+|-------|------|-------|
+| content | String | Required |
+| ticket | ObjectId | Reference to Ticket |
+| author | ObjectId | Reference to User |
+| createdAt | Date | Added automatically by Mongoose timestamps |
+
+### Relationships
+
+- One **User** creates many **Tickets**.
+- One **Ticket** has many **Comments**.
+- One **User** writes many **Comments**.
+
+---
+
+## Routes
+

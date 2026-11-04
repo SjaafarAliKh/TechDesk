@@ -10,7 +10,7 @@ router.use(isSignedIn)
 
 // CREATE: show the form (must stay above "/:id")
 router.get("/new", (req, res) => {
-  res.render("ticket/new.ejs")
+  res.render("tickets/new.ejs")
 })
 
 // CREATE: save the ticket
@@ -71,23 +71,33 @@ router.put("/:id", async (req, res) => {
     const { title, description, category, priority, status } = req.body
 
     const ticket = await Ticket.findOneAndUpdate(
-      { _id: req.params.id, owner: req.session.user._id }
+      { _id: req.params.id, owner: req.session.user._id },
       { title, description, category, priority, status },
       { runValidators: true }
     )
+
     if (!ticket) return res.redirect("/tickets")
     res.redirect(`/tickets/${req.params.id}`)
   } catch (error) {
     console.log(error)
     res.redirect("/tickets")
-
   }
 })
 
 
 // DELETE: remove the ticket and its comments
-
-
+router.delete("/:id", async (req, res) => {
+  try {
+    const ticket = await Ticket.findOneAndDelete({_id: req.params.id, owner: req.session.user._id})
+    if (ticket){
+      await Comment.deleteMany({ ticket: ticket._id }) // no orphan comments
+    }
+    res.redirect("/tickets")
+  } catch (error) {
+    console.log(error)
+    res.redirect("/tickets")
+  }
+})
 
 // COMMENT: add a comment to a ticket
 

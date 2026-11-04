@@ -12,11 +12,12 @@
     <p><strong>Status:</strong> <%= ticket.status %></p>
     <p><strong>Category:</strong> <%= ticket.category %></p>
     <p><strong>Priority:</strong> <%= ticket.priority %></p>
-    <p><strong>Created:</strong> <%= ticket.createdAt.toLocaleString() %></p>
+    <p><strong>Created:</strong> <%= new Date(ticket.createdAt).getFullYear()%>-<%=new Date(ticket.createdAt).getMonth()  %>-<%=new Date(ticket.createdAt).getDay()%></p>
 
     <h2>Description</h2>
     <p><%= ticket.description %></p>
 
+    <a href="/tickets/<%= ticket._id %>/edit">Edit Ticket</a>
     <a href="/tickets">Back to my tickets</a>
   </body>
 </html>
