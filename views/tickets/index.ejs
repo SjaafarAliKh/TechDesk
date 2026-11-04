@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Tickets</title>
+  </head>
+  <body>
+    <%- include('../partials/navbar') %>
+    <h1>My Tickets</h1>
+
+    <% if (tickets.length === 0) { %>
+      <p>You have no tickets yet. <a href="/tickets/new">Create your first ticket</a>.</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% tickets.forEach((ticket) => { %>
+            <tr>
+              <td><%= ticket.title %></td>
+              <td><%= ticket.category %></td>
+              <td><%= ticket.priority %></td>
+              <td><%= ticket.status %></td>
+              <td><%= ticket.createdAt.toLocaleDateString() %></td>
+              <td><a href="/tickets/<%= ticket._id %>">View</a></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </body>
+</html>
