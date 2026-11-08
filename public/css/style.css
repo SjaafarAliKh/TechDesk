@@ -47,3 +47,17 @@ a:hover { text-decoration: underline; }
 .empty { text-align: center; color: var(--muted); }
 
 
+/* ===== 3. Navbar ===== */
+nav {
+  background: #111827;
+  padding: 14px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+nav a { color: #e5e7eb; font-weight: 500; }
+nav a:hover { color: #fff; text-decoration: none; }
+nav .brand { color: #fff; font-weight: 700; font-size: 1.15rem; margin-right: auto; }
+
+
