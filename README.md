@@ -4,7 +4,7 @@
 
 A web application that lets users report technical issues, track support tickets, and manage their resolution status.
 
-**Live app:** 
+**Live app:** https://techdesk-d3s7.onrender.com/
 
 **Planning:** 
 
@@ -23,21 +23,20 @@ This is a solo project built for the General Assembly Software Engineering Bootc
 
 ## Screenshots
 
-_Add screenshots after the pages are built. Suggested set:_
-
-| Page | Screenshot |
-|------|------------|
-| Home page | `docs/screenshots/home.png` |
-| Sign up / Sign in | `docs/screenshots/auth.png` |
-| Tickets list | `docs/screenshots/tickets-list.png` |
-| Ticket details with comments | `docs/screenshots/ticket-show.png` |
-| New / Edit ticket form | `docs/screenshots/ticket-form.png` |
-
-Example of the Markdown to use once the images exist:
-
-```md
+### Home page
+![Home page](docs/screenshots/home.png)
+ 
+### Sign up and sign in
+![Sign up and sign in](docs/screenshots/auth.png)
+ 
+### Tickets list
 ![Tickets list](docs/screenshots/tickets-list.png)
-```
+ 
+### Ticket details with comments
+![Ticket details](docs/screenshots/ticket-show.png)
+ 
+### New and edit ticket forms
+![Ticket form](docs/screenshots/ticket-form.png)
 
 ---
 
@@ -71,8 +70,8 @@ Example of the Markdown to use once the images exist:
 1. Clone the repository:
 
    ```bash
-   git clone <your-repository-url>
-   cd techdesk
+   git clone https://github.com/SjaafarAliKh/TechDesk.git
+   cd TechDesk
    ```
 
 2. Install the dependencies:
@@ -117,15 +116,15 @@ Example of the Markdown to use once the images exist:
 ### Entity Relationship Diagram (ERD)
 
 ![TechDesk ERD](docs/erd.png)
-
+ 
 The same diagram in text form:
-
+ 
 ```mermaid
 erDiagram
     USER ||--o{ TICKET : creates
     TICKET ||--o{ COMMENT : has
     USER ||--o{ COMMENT : writes
-
+ 
     USER {
         ObjectId _id PK
         String username
@@ -154,32 +153,32 @@ erDiagram
 ### Models
 
 **User**
-
+ 
 | Field | Type | Notes |
 |-------|------|-------|
 | username | String | Required, unique |
 | password | String | Required, stored hashed with bcrypt |
-
+ 
 **Ticket** (full CRUD)
-
+ 
 | Field | Type | Notes |
 |-------|------|-------|
 | title | String | Required |
 | description | String | Required |
 | category | String | Network, Hardware, Software, or Account |
-| priority | String | Low, Medium, High, or Urgent |
+| priority | String | Low, Medium, High, or Urgent (default: Medium) |
 | status | String | Open, In Progress, Resolved, or Closed (default: Open) |
 | owner | ObjectId | Reference to User |
 | createdAt, updatedAt | Date | Added automatically by Mongoose timestamps |
-
+ 
 **Comment**
-
+ 
 | Field | Type | Notes |
 |-------|------|-------|
 | content | String | Required |
 | ticket | ObjectId | Reference to Ticket |
 | author | ObjectId | Reference to User |
-| createdAt | Date | Added automatically by Mongoose timestamps |
+| createdAt, updatedAt | Date | Added automatically by Mongoose timestamps |
 
 ### Relationships
 
@@ -191,3 +190,55 @@ erDiagram
 
 ## Routes
 
+| Method | Route | Description |
+|---------|-------|-------------|
+| GET | / | Home page |
+| GET | /auth/sign-up | Sign-up form |
+| POST | /auth/sign-up | Create account |
+| GET | /auth/sign-in | Sign-in form |
+| POST | /auth/sign-in | Sign in |
+| GET | /auth/sign-out | Sign out |
+| GET | /tickets | List all of my tickets |
+| GET | /tickets/new | New ticket form |
+| POST | /tickets | Create ticket |
+| GET | /tickets/:id | View ticket with its comments |
+| GET | /tickets/:id/edit | Edit ticket form |
+| PUT | /tickets/:id | Update ticket |
+| DELETE | /tickets/:id | Delete ticket and its comments |
+| POST | /tickets/:id/comments | Add a comment to a ticket |
+ 
+All `/tickets` routes require the user to be signed in, and every ticket query is limited to the signed-in user's own tickets.
+
+
+---
+
+## Features
+
+- User registration, sign in, and sign out with session authentication
+- Password hashing with bcrypt
+- Full CRUD on tickets (create, read, update, delete)
+- Ticket category, priority, and status tracking
+- Comments on each ticket, with the author and time shown
+- Dates shown in the visitor's own device time zone
+- Private data: users can only access their own tickets
+- Protected routes for signed-out visitors
+- Clean, responsive interface
+
+---
+
+## Future Enhancements
+
+- Admin / technician role to manage, assign, and reply to all tickets
+- Filter and search tickets by status, category, or priority
+- Sort tickets by date or priority
+- Edit and delete comments
+- Email notifications when a ticket status changes
+- File and screenshot attachments on tickets
+- Dashboard with ticket statistics
+
+---
+
+## Credits
+
+- Built as part of the General Assembly Software Engineering Bootcamp
+- Author: _Sayed Jaafar_ - [GitHub profile](https://github.com/SjaafarAliKh)
