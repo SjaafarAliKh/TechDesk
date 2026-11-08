@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head', { title: ticket.title }) %>
+<head>
+  <%- include('../partials/head', { title: ticket.title }) %>
+</head>  
+
   <body>
     <%- include('../partials/navbar') %>
     <h1><%= ticket.title %></h1>
