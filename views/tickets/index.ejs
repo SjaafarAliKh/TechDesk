@@ -1,40 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <%- include('../partials/head', { title: 'My Tickets' }) %>
-</head>
-
+  <head>
+    <%- include('../partials/head', { title: 'My Tickets' }) %>
+  </head>
   <body>
     <%- include('../partials/navbar') %>
-    <h1>My Tickets</h1>
 
-    <% if (tickets.length === 0) { %>
-      <p>You have no tickets yet. <a href="/tickets/new">Create your first ticket</a>.</p>
-    <% } else { %>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Priority</th>
-            <th>Status</th>
-            <th>Created</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% tickets.forEach((ticket) => { %>
-            <tr>
-              <td><%= ticket.title %></td>
-              <td><%= ticket.category %></td>
-              <td><%= ticket.priority %></td>
-              <td><%= ticket.status %></td>
-              <td><%- dateTag(ticket.createdAt) %></td>
-              <td><a href="/tickets/<%= ticket._id %>">View</a></td>
-            </tr>
-          <% }) %>
-        </tbody>
-      </table>
-    <% } %>
+    <main class="container">
+      <div class="page-header">
+        <h1>My Tickets</h1>
+        <a href="/tickets/new" class="btn btn-primary">+ New Ticket</a>
+      </div>
+
+      <% if (tickets.length === 0) { %>
+        <div class="card empty">
+          <p>You have no tickets yet.</p>
+          <a href="/tickets/new" class="btn btn-primary">Create your first ticket</a>
+        </div>
+      <% } else { %>
+        <div class="card table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Created</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% tickets.forEach((ticket) => { %>
+                <tr>
+                  <td><a href="/tickets/<%= ticket._id %>"><%= ticket.title %></a></td>
+                  <td><%= ticket.category %></td>
+                  <td><span class="badge priority-<%= ticket.priority.toLowerCase() %>"><%= ticket.priority %></span></td>
+                  <td><span class="badge status-<%= ticket.status.toLowerCase().replace(' ', '-') %>"><%= ticket.status %></span></td>
+                  <td><%- dateTag(ticket.createdAt) %></td>
+                  <td><a href="/tickets/<%= ticket._id %>/edit">Edit</a></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </main>
+
+    <script src="/js/dates.js"></script>
   </body>
 </html>
