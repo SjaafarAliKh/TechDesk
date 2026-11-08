@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('partials/head', { title: 'Home' }) %>
+<head>
+    <%- include('partials/head', { title: 'Home' }) %>
+</head>    
+
 <body>
     <%- include('./partials/navbar') %>
-    <h1>TechDesk</h1>
-    <p>Report technical issues and track your support tickets.</p>
 
-    <% if (user) { %>
-        <p>Welcome, <%= user.username %>!</p>
-    <% } %>    
+    <main class="container">
+      <section class="card hero">    
+        <h1>TechDesk</h1>
+        <p>Report technical issues, track your support tickets, and keep every update in one place.</p>
+
+        <% if (user) { %>
+          <p>Welcome back, <strong><%= user.username %></strong>!</p>
+          <a href="/tickets" class="btn btn-primary">My Tickets</a>
+          <a href="/tickets/new" class="btn">New Ticket</a>
+        <% } else { %>
+          <a href="/auth/sign-up" class="btn btn-primary">Get Started</a>
+          <a href="/auth/sign-in" class="btn">Sign In</a>
+        <% } %>
+      </section>
+    </main>   
     
-</body>
+    </body>
 </html>
