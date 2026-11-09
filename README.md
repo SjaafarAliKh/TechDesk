@@ -67,6 +67,8 @@ This is a solo project built for the General Assembly Software Engineering Bootc
 - **morgan** - request logging
 - **Git and GitHub** - version control
 - **draw.io** - ERD and wireframes
+- **MongoDB Atlas** - cloud database
+- **Render** - hosting
 
 ---
 
@@ -169,7 +171,7 @@ erDiagram
 | Field | Type | Notes |
 |-------|------|-------|
 | username | String | Required, unique |
-| password | String | Required, stored hashed with bcrypt |
+| password | String | Required, stored hashed with bcrypt; must be longer than 6 characters at sign-up |
  
 **Ticket** (full CRUD)
  
@@ -227,7 +229,8 @@ All `/tickets` routes require the user to be signed in, and every ticket query i
 ## Features
 
 - User registration, sign in, and sign out with session authentication
-- Password hashing with bcrypt
+- Password hashing with bcrypt and password length validation
+- Clear error messages shown inside the sign-in and sign-up pages
 - Full CRUD on tickets (create, read, update, delete)
 - Ticket category, priority, and status tracking
 - Comments on each ticket, with the author and time shown
@@ -253,4 +256,4 @@ All `/tickets` routes require the user to be signed in, and every ticket query i
 ## Credits
 
 - Built as part of the General Assembly Software Engineering Bootcamp
-- Author: _Sayed Jaafar_ - [GitHub profile](https://github.com/SjaafarAliKh)
+- Author: Sayed Jaafar - [GitHub profile](https://github.com/SjaafarAliKh)
