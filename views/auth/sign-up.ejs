@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <%- include('../partials/head', { title: 'Sign Up' }) %>
-</head> 
+</head>
 
-  <body>
-    <%- include('../partials/navbar') %>
+<body>
+  <%- include('../partials/navbar') %>
 
     <main class="container">
-      <div class="card auth-card">    
-    <h1>Create an account</h1>
-    <form action="/auth/sign-up" method="POST">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" required />
+      <div class="card auth-card">
+        <h1>Create an account</h1>
+        <form action="/auth/sign-up" method="POST">
+          <label for="username">Username:</label>
+          <input type="text" name="username" id="username" required />
 
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" required />
+          <label for="password">Password:</label>
+          <input type="password" name="password" id="password" minlength="7" required />
+          <label for="confirmPassword">Confirm Password:</label>
+          <input type="password" name="confirmPassword" id="confirmPassword" required />
 
-      <label for="confirmPassword">Confirm Password:</label>
-      <input type="password" name="confirmPassword" id="confirmPassword" required />
-      
-      <button type="submit" class="btn btn-primary">Sign up</button>
-    </form>
-  </body>
+          <button type="submit" class="btn btn-primary">Sign up</button>
+        </form>
+      </div>
+    </main>
+</body>
+
 </html>
