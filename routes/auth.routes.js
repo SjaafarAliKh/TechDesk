@@ -58,6 +58,7 @@ router.post("/sign-in", async (req, res) => {
     }
     res.redirect("/");
   } catch (error) {
+    console.log(error)
     res.render("auth/sign-in.ejs", { error: "Something went wrong. Please try again.", username })
   }
 });
