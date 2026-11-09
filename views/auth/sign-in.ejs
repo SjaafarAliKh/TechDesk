@@ -9,18 +9,27 @@
   <%- include('../partials/navbar') %>
 
     <main class="container">
-      <div class="card auth-card">
+      <section class="card auth-card">
         <h1>Sign in</h1>
-        <form action="/auth/sign-in" method="POST">
-          <label for="username">Username:</label>
-          <input type="text" name="username" id="username" required />
 
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password" required />
+        <% if (error) { %>
+          <p class="alert alert-error">
+            <%= error %>
+          </p>
+          <% } %>
 
-          <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
-      </div>
+            <form action="/auth/sign-in" method="POST">
+              <label for="username">Username</label>
+              <input type="text" name="username" id="username" value="<%= username %>" required />
+
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" required />
+
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+
+            <p class="auth-switch">No account yet? <a href="/auth/sign-up">Sign up</a></p>
+      </section>
     </main>
 </body>
 

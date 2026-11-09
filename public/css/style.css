@@ -169,3 +169,22 @@ tbody tr:hover td { background: #f9fafb; }
   .hero h1 { font-size: 1.8rem; }
   nav { gap: 14px; padding: 12px 16px; }
 }
+
+/* ===== Alerts ===== */
+.alert {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+.alert-error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+.auth-switch {
+  margin: 16px 0 0;
+  text-align: center;
+  color: var(--muted);
+}
+
