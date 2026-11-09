@@ -6,7 +6,7 @@ A web application that lets users report technical issues, track support tickets
 
 **Live app:** https://techdesk-d3s7.onrender.com/
 
-**Planning:** 
+**Planning:** https://trello.com/b/LctnAPY8
 
 
 ---
@@ -24,19 +24,31 @@ This is a solo project built for the General Assembly Software Engineering Bootc
 ## Screenshots
 
 ### Home page
-![Home page](docs/screenshots/home.png)
+<p align="center">
+  <img src="docs/screenshots/home.png" alt="Home page" width="80%">
+</p>
  
 ### Sign up and sign in
-![Sign up and sign in](docs/screenshots/auth.png)
+<p align="center">
+  <img src="docs/screenshots/auth1.png" alt="Sign up" width="45%">
+  <img src="docs/screenshots/auth2.png" alt="Sign in" width="45%">
+</p>
  
 ### Tickets list
-![Tickets list](docs/screenshots/tickets-list.png)
+<p align="center">
+  <img src="docs/screenshots/tickets-list.png" alt="Tickets list" width="80%">
+</p>
  
 ### Ticket details with comments
-![Ticket details](docs/screenshots/ticket-show.png)
+<p align="center">
+  <img src="docs/screenshots/ticket-show.png" alt="Ticket details" width="80%">
+</p>
  
 ### New and edit ticket forms
-![Ticket form](docs/screenshots/ticket-form.png)
+<p align="center">
+  <img src="docs/screenshots/ticket-form.png" alt="Ticket form" width="80%">
+</p>
+
 
 ---
 
@@ -115,7 +127,7 @@ This is a solo project built for the General Assembly Software Engineering Bootc
 
 ### Entity Relationship Diagram (ERD)
 
-![TechDesk ERD](docs/erd.png)
+<img src="docs/erd.png" alt="TechDesk ERD" width="700">
  
 The same diagram in text form:
  
